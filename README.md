@@ -1,8 +1,8 @@
-# StudySync
+# V4
 
 > *Inspired by students, built for students.*
 
-StudySync is an AI-powered productivity platform for students, built with Next.js. It helps you manage courses, tasks, notes, and study sessions with a modern, modular interface and integrated AI features.
+V4 is an AI-powered productivity platform for students, built with Next.js. It helps you manage courses, tasks, notes, and study sessions with a modern, modular interface and integrated AI features.
 
 ## ✨ Features
 
@@ -35,8 +35,8 @@ StudySync is an AI-powered productivity platform for students, built with Next.j
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/studysync.git
-   cd studysync
+   git clone https://github.com/Kaushik2003/V4
+   cd v4
    ```
 
 2. **Install dependencies:**
@@ -78,10 +78,10 @@ studysync/
 
 ## 🚀 Roadmap & Future Plans
 
-StudySync is actively evolving! Here's what we're working on:
+V4 is actively evolving! Here's what we're working on:
 
 ### 🎯 Immediate Priorities
-- **🗄️ Database Migration**: Transitioning from local storage to cloud database (PostgreSQL)
+- **🗄️ Database Migration**: Transitioning from local storage to cloud database (PostgreSQL/MongoDB)
 - **🎨 UI/UX Overhaul**: Making the interface more modern, intuitive, and visually appealing
 - **📱 Mobile Experience**: Enhanced responsive design and potential mobile app
 - **🔐 User Authentication**: Implementing secure user accounts and data sync
@@ -100,7 +100,7 @@ We **actively welcome contributions** from the community! This project especiall
 ### 🆘 Priority Areas (We Need Your Help!)
 
 - **🗄️ Database Migration Expert**: Help us migrate from localStorage to a cloud database solution
-- **🎨 UI/UX Designer/Developer**: Make StudySync look absolutely stunning and user-friendly
+- **🎨 UI/UX Designer/Developer**: Make V4 look absolutely stunning and user-friendly
 - **📱 Mobile/Responsive Specialist**: Improve the mobile experience
 - **🧪 Testing Enthusiast**: Add comprehensive test coverage
 - **📚 Documentation Writer**: Improve docs and user guides
@@ -110,7 +110,7 @@ We **actively welcome contributions** from the community! This project especiall
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/yourusername/studysync.git
+   git clone https://github.com/Kaushik2003/V4
    ```
 3. **Create a new branch** for your feature:
    ```bash
@@ -147,7 +147,7 @@ We **actively welcome contributions** from the community! This project especiall
 
 ### Reporting Issues
 
-Found a bug or have a feature request? Please [open an issue](https://github.com/yourusername/studysync/issues) with:
+Found a bug or have a feature request? Please [open an issue](https://github.com/Kaushik2003/V4/issues) with:
 
 - Clear description of the problem or suggestion
 - Steps to reproduce (for bugs)
@@ -160,7 +160,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Thanks to all contributors who help make StudySync better
+- Thanks to all contributors who help make V4 better
 - Built with love for the student community
 - Special thanks to the open-source libraries that make this project possible
 
