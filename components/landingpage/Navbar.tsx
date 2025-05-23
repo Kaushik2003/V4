@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "../../components/ui/button";
 import { cn } from "../../lib/utils";
+import Image from 'next/image'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,9 +31,9 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-v4-purple to-v4-blue flex items-center justify-center">
-            <span className="font-bold text-xl text-white">V4</span>
+            <Image src="/logo.png" width={500} height={500} alt="Logo"/>
           </div>
-          <span className="ml-2 text-xl font-bold">V4</span>
+          
         </div>
         
         {/* Navigation */}

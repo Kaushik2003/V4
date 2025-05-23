@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useStore } from "@/lib/store"
-import { CoursesWidget } from "./widgets/courses-widget"
-import { TodaysPlanWidget } from "./widgets/todays-plan-widget"
-import { FocusShortcutWidget } from "./widgets/focus-shortcut-widget"
-import { StatsWidget } from "./widgets/stats-widget"
+import { motion } from "framer-motion";
+import { useStore } from "@/lib/store";
+import { CoursesWidget } from "./widgets/courses-widget";
+import { TodaysPlanWidget } from "./widgets/todays-plan-widget";
+import { FocusShortcutWidget } from "./widgets/focus-shortcut-widget";
+import { StatsWidget } from "./widgets/stats-widget";
 // Remove the NotificationsWidget import
 
 export function Dashboard() {
-  const { courses, tasks, focusSessions } = useStore()
+  const { courses, tasks, focusSessions } = useStore();
 
   // Animation variants for staggered animation
   const containerVariants = {
@@ -20,12 +20,12 @@ export function Dashboard() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  }
+  };
 
   return (
     <div className="h-[calc(100vh-4rem)] flex flex-col overflow-hidden">
@@ -41,17 +41,26 @@ export function Dashboard() {
         animate="show"
       >
         {/* Today's Plan Widget - Spans 6 columns on medium, 5 on large */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-6 lg:col-span-5 row-span-1 md:row-span-2">
+        <motion.div
+          variants={itemVariants}
+          className="col-span-1 md:col-span-6 lg:col-span-5 row-span-1 md:row-span-2"
+        >
           <TodaysPlanWidget tasks={tasks} />
         </motion.div>
 
         {/* Stats Widget - Spans 6 columns on medium, 7 on large */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-6 lg:col-span-7 row-span-1">
+        <motion.div
+          variants={itemVariants}
+          className="col-span-1 md:col-span-6 lg:col-span-7 row-span-1"
+        >
           <StatsWidget tasks={tasks} focusSessions={focusSessions} />
         </motion.div>
 
         {/* Focus Shortcut Widget - Spans 6 columns on medium, 4 on large */}
-        <motion.div variants={itemVariants} className="col-span-1 md:col-span-6 lg:col-span-4 row-span-1">
+        <motion.div
+          variants={itemVariants}
+          className="col-span-1 md:col-span-6 lg:col-span-4 row-span-1"
+        >
           <FocusShortcutWidget />
         </motion.div>
 
@@ -66,5 +75,5 @@ export function Dashboard() {
         {/* Removed NotificationsWidget */}
       </motion.div>
     </div>
-  )
+  );
 }

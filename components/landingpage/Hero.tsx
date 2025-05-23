@@ -23,13 +23,10 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-v4-purple hover:bg-v4-purple/90 text-white px-8 py-6">
-                Join Waitlist
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
               <Link href="/dashboard" passHref>
                 <Button variant="outline" className="text-v4-purple border-v4-purple hover:bg-v4-purple/10 px-8 py-6">
-                  Learn More
+                  Join V4
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>

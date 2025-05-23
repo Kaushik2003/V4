@@ -1,5 +1,5 @@
 "use client"
-
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -44,12 +44,12 @@ export function Sidebar() {
 
   // Navigation items
   const navItems = [
-    { href: "/", label: "Dashboard", icon: LayoutDashboard },
-    { href: "/planner", label: "Planner", icon: Calendar },
-    { href: "/courses", label: "Courses", icon: BookOpen },
-    { href: "/focus", label: "Focus Mode", icon: Clock },
-    { href: "/notes", label: "Notes", icon: FileText },
-    { href: "/assistant", label: "AI Assistant", icon: Bot },
+    { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/dashboard/planner", label: "Planner", icon: Calendar },
+    { href: "/dashboard/courses", label: "Courses", icon: BookOpen },
+    { href: "/dashboard/focus", label: "Focus Mode", icon: Clock },
+    { href: "/dashboard/notes", label: "Notes", icon: FileText },
+    { href: "/dashboard/assistant", label: "AI Assistant", icon: Bot },
   ]
 
   // Sidebar variants for animation
@@ -130,9 +130,15 @@ export function Sidebar() {
       <div className="flex flex-col h-full p-4">
         <div className="flex items-center justify-between mb-8">
           {sidebarOpen ? (
-            <h1 className="text-xl font-bold text-primary">StudySync</h1>
+            <Link className="flex justify-center" href='/'>
+              {/* <h1 className="text-xl font-bold text-primary ">V4</h1> */}
+                <Image src="/logo.png" width={75} height={75} alt="Logo"/>
+            </Link>
           ) : (
-            <span className="text-xl font-bold text-primary">SS</span>
+            <Link className="flex justify-center" href='/'>
+              <span className="text-xl font-bold text-primary">V4</span>
+            </Link>
+            
           )}
 
           <Button variant="ghost" size="icon" onClick={toggleSidebar}>
