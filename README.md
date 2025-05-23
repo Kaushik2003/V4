@@ -44,17 +44,26 @@ V4 is an AI-powered productivity platform for students, built with Next.js. It h
    pnpm install
    ```
 
-3. **Run the development server:**
+3. **Set up environment variables:**
+   
+   Create a `.env.local` file in the root directory and add your Gemini API key:
+   ```bash
+   GEMINI_API_KEY=AIzaSyC8xK9mP2wLvN4rFgH6jS3nQ7eT1uY5bX9
+   ```
+   
+   > **Note:** Replace the example key above with your actual Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+
+4. **Run the development server:**
    ```bash
    pnpm dev
    ```
 
-4. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
+5. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
 ## 📁 Project Structure
 
 ```
-studysync/
+V4/
 ├── .next/                    # Next.js build output
 ├── app/                      # Next.js app directory
 │   ├── account/             # Account management pages
