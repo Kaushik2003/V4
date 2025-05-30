@@ -16,6 +16,8 @@ import { AddTaskDialog } from "./tasks/add-task-dialog"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { useStore } from "@/lib/store"
+import { LogoutButton } from "@/components/logout-button";
+
 
 export function TopBar() {
   const [date, setDate] = useState(new Date())
@@ -290,7 +292,7 @@ export function TopBar() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <span>Log out</span>
+              <LogoutButton />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
