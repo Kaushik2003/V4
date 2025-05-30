@@ -18,6 +18,9 @@ const config: Config = {
     },
     extend: {
       colors: {
+        'v4-dark': 'hsl(var(--background))',
+        'v4-purple': 'hsl(var(--purple))', 
+        'v4-blue': 'hsl(var(--blue))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

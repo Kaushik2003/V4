@@ -143,7 +143,7 @@ export function TopBar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className="h-16 border-b border-border/50 glassmorphism flex items-center justify-between px-4 md:px-6"
+      className="h-16 border-b border-border/50 glassmorphism flex items-center justify-between px-4 md:px-6 z-40"
     >
       <div className="flex items-center space-x-4">
         <div className="hidden md:block">
