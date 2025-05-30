@@ -14,7 +14,7 @@ const contributionAreas = [
   {
     title: "Frontend Development",
     description: "Help build the UI and implement interactive features with modern web technologies.",
-    skills: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+    skills: ["React", "TypeScript",  "Tailwind CSS", "Next.js"],
     icon: Code2,
     iconColor: "text-v4-purple",
   },
