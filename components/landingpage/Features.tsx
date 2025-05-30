@@ -64,7 +64,7 @@ const cardVariants = {
 
 const Features = () => {
   return (
-    <section id="features" className="py-20 md:py-28 bg-gradient-to-b from-v4-dark to-black relative overflow-hidden">
+    <section id="features" className="py-20  md:py-28 bg-gradient-to-b from-v4-dark to-black relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16 md:mb-20"
