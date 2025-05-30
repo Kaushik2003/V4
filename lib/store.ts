@@ -1,159 +1,163 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // Types
 export type Course = {
-  id: string
-  name: string
-  color: string
-  progress: number
-  thumbnail?: string
-  tasks: Task[]
-  notes: Note[]
-  resources: Resource[]
-  exams: Exam[]
-}
+  id: string;
+  name: string;
+  color: string;
+  progress: number;
+  thumbnail?: string;
+  tasks: Task[];
+  notes: Note[];
+  resources: Resource[];
+  exams: Exam[];
+};
 
 export type Task = {
-  id: string
-  title: string
-  description?: string
-  courseId: string
-  dueDate: string
-  priority: "low" | "medium" | "high"
-  completed: boolean
-  createdAt: string
-}
+  id: string;
+  title: string;
+  description?: string;
+  courseId: string;
+  dueDate: string;
+  priority: "low" | "medium" | "high";
+  completed: boolean;
+  createdAt: string;
+};
 
 export type Note = {
-  id: string
-  title: string
-  content: string
-  courseId: string
-  createdAt: string
-  updatedAt: string
-  flashcards: Flashcard[]
-}
+  id: string;
+  title: string;
+  content: string;
+  courseId: string;
+  createdAt: string;
+  updatedAt: string;
+  flashcards: Flashcard[];
+};
 
 export type Flashcard = {
-  id: string
-  question: string
-  answer: string
-  noteId: string
-  lastReviewed?: string
-  confidence: "low" | "medium" | "high"
-}
+  id: string;
+  question: string;
+  answer: string;
+  noteId: string;
+  lastReviewed?: string;
+  confidence: "low" | "medium" | "high";
+};
 
 export type Resource = {
-  id: string
-  title: string
-  url: string
-  type: "link" | "file"
-  courseId: string
-}
+  id: string;
+  title: string;
+  url: string;
+  type: "link" | "file";
+  courseId: string;
+};
 
 export type Exam = {
-  id: string
-  title: string
-  courseId: string
-  date: string
-  description?: string
-  progress: number
-}
+  id: string;
+  title: string;
+  courseId: string;
+  date: string;
+  description?: string;
+  progress: number;
+};
 
 export type FocusSession = {
-  id: string
-  startTime: string
-  endTime?: string
-  taskId?: string
-  courseId?: string
-  pomodorosCompleted: number
-  totalFocusTime: number // in seconds
-  sessionType: "pomodoro" | "shortBreak" | "longBreak"
-}
+  id: string;
+  startTime: string;
+  endTime?: string;
+  taskId?: string;
+  courseId?: string;
+  pomodorosCompleted: number;
+  totalFocusTime: number; // in seconds
+  sessionType: "pomodoro" | "shortBreak" | "longBreak";
+};
 
 export type AIMessage = {
-  id: string
-  role: "user" | "assistant"
-  content: string
-  timestamp: string
-  courseId?: string
-}
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+  courseId?: string;
+};
 
 export type AIConversation = {
-  id: string
-  title: string
-  messages: AIMessage[]
-  courseId?: string
-  createdAt: string
-  updatedAt: string
-}
+  id: string;
+  title: string;
+  messages: AIMessage[];
+  courseId?: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
 // Store type
 type StudySyncStore = {
   // Data
-  courses: Course[]
-  tasks: Task[]
-  notes: Note[]
-  focusSessions: FocusSession[]
-  aiConversations: AIConversation[]
+  courses: Course[];
+  tasks: Task[];
+  notes: Note[];
+  focusSessions: FocusSession[];
+  aiConversations: AIConversation[];
 
   // Current state
-  currentCourse?: string
-  currentTask?: string
-  currentNote?: string
-  currentConversation?: string
+  currentCourse?: string;
+  currentTask?: string;
+  currentNote?: string;
+  currentConversation?: string;
 
   // Focus mode
-  isFocusModeActive: boolean
-  currentFocusSession?: FocusSession
+  isFocusModeActive: boolean;
+  currentFocusSession?: FocusSession;
   pomodoroSettings: {
-    focusDuration: number // in minutes
-    breakDuration: number // in minutes
-    longBreakDuration: number // in minutes
-    longBreakInterval: number // after how many pomodoros
-  }
+    focusDuration: number; // in minutes
+    breakDuration: number; // in minutes
+    longBreakDuration: number; // in minutes
+    longBreakInterval: number; // after how many pomodoros
+  };
 
   // UI state
-  sidebarOpen: boolean
+  sidebarOpen: boolean;
 
   // Actions
-  setSidebarOpen: (open: boolean) => void
+  setSidebarOpen: (open: boolean) => void;
 
   // Course actions
-  addCourse: (course: Omit<Course, "id" | "tasks" | "notes" | "resources" | "exams">) => void
-  updateCourse: (id: string, course: Partial<Course>) => void
-  deleteCourse: (id: string) => void
-  setCurrentCourse: (id?: string) => void
+  addCourse: (
+    course: Omit<Course, "id" | "tasks" | "notes" | "resources" | "exams">
+  ) => void;
+  updateCourse: (id: string, course: Partial<Course>) => void;
+  deleteCourse: (id: string) => void;
+  setCurrentCourse: (id?: string) => void;
 
   // Task actions
-  addTask: (task: Omit<Task, "id" | "createdAt">) => void
-  updateTask: (id: string, task: Partial<Task>) => void
-  deleteTask: (id: string) => void
-  toggleTaskCompletion: (id: string) => void
-  setCurrentTask: (id?: string) => void
+  addTask: (task: Omit<Task, "id" | "createdAt">) => void;
+  updateTask: (id: string, task: Partial<Task>) => void;
+  deleteTask: (id: string) => void;
+  toggleTaskCompletion: (id: string) => void;
+  setCurrentTask: (id?: string) => void;
 
   // Note actions
-  addNote: (note: Omit<Note, "id" | "createdAt" | "updatedAt" | "flashcards">) => void
-  updateNote: (id: string, note: Partial<Note>) => void
-  deleteNote: (id: string) => void
-  setCurrentNote: (id?: string) => void
+  addNote: (
+    note: Omit<Note, "id" | "createdAt" | "updatedAt" | "flashcards">
+  ) => void;
+  updateNote: (id: string, note: Partial<Note>) => void;
+  deleteNote: (id: string) => void;
+  setCurrentNote: (id?: string) => void;
 
   // Focus mode actions
-  startFocusSession: (taskId?: string, courseId?: string) => void
-  endFocusSession: () => void
-  updateFocusSession: (session: Partial<FocusSession>) => void
+  startFocusSession: (taskId?: string, courseId?: string) => void;
+  endFocusSession: () => void;
+  updateFocusSession: (session: Partial<FocusSession>) => void;
 
   // AI actions
-  startConversation: (title: string, courseId?: string) => void
-  addMessage: (content: string, role: "user" | "assistant") => void
-  deleteConversation: (id: string) => void
-  clearConversationMessages: (id: string) => void
-  setCurrentConversation: (id?: string) => void
-}
+  startConversation: (title: string, courseId?: string) => void;
+  addMessage: (content: string, role: "user" | "assistant") => void;
+  deleteConversation: (id: string) => void;
+  clearConversationMessages: (id: string) => void;
+  setCurrentConversation: (id?: string) => void;
+};
 
 // Generate a unique ID
-const generateId = () => Math.random().toString(36).substring(2, 11)
+const generateId = () => Math.random().toString(36).substring(2, 11);
 
 // Create the store
 export const useStore = create<StudySyncStore>()(
@@ -176,7 +180,7 @@ export const useStore = create<StudySyncStore>()(
       isFocusModeActive: false,
       currentFocusSession: undefined,
       pomodoroSettings: {
-        focusDuration: 25,
+        focusDuration: 1,
         breakDuration: 5,
         longBreakDuration: 15,
         longBreakInterval: 4,
@@ -190,7 +194,7 @@ export const useStore = create<StudySyncStore>()(
 
       // Course actions
       addCourse: (course) => {
-        const id = generateId()
+        const id = generateId();
         set((state) => ({
           courses: [
             ...state.courses,
@@ -203,13 +207,15 @@ export const useStore = create<StudySyncStore>()(
               exams: [],
             },
           ],
-        }))
-        return id
+        }));
+        return id;
       },
 
       updateCourse: (id, course) =>
         set((state) => ({
-          courses: state.courses.map((c) => (c.id === id ? { ...c, ...course } : c)),
+          courses: state.courses.map((c) =>
+            c.id === id ? { ...c, ...course } : c
+          ),
         })),
 
       deleteCourse: (id) =>
@@ -223,8 +229,8 @@ export const useStore = create<StudySyncStore>()(
 
       // Task actions
       addTask: (task) => {
-        const id = generateId()
-        const now = new Date().toISOString()
+        const id = generateId();
+        const now = new Date().toISOString();
         set((state) => ({
           tasks: [
             ...state.tasks,
@@ -235,8 +241,8 @@ export const useStore = create<StudySyncStore>()(
               createdAt: now,
             },
           ],
-        }))
-        return id
+        }));
+        return id;
       },
 
       updateTask: (id, task) =>
@@ -251,15 +257,17 @@ export const useStore = create<StudySyncStore>()(
 
       toggleTaskCompletion: (id) =>
         set((state) => ({
-          tasks: state.tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
+          tasks: state.tasks.map((t) =>
+            t.id === id ? { ...t, completed: !t.completed } : t
+          ),
         })),
 
       setCurrentTask: (id) => set({ currentTask: id }),
 
       // Note actions
       addNote: (note) => {
-        const id = generateId()
-        const now = new Date().toISOString()
+        const id = generateId();
+        const now = new Date().toISOString();
         set((state) => ({
           notes: [
             ...state.notes,
@@ -271,15 +279,17 @@ export const useStore = create<StudySyncStore>()(
               flashcards: [],
             },
           ],
-        }))
-        return id
+        }));
+        return id;
       },
 
       updateNote: (id, note) => {
-        const now = new Date().toISOString()
+        const now = new Date().toISOString();
         set((state) => ({
-          notes: state.notes.map((n) => (n.id === id ? { ...n, ...note, updatedAt: now } : n)),
-        }))
+          notes: state.notes.map((n) =>
+            n.id === id ? { ...n, ...note, updatedAt: now } : n
+          ),
+        }));
       },
 
       deleteNote: (id) =>
@@ -291,8 +301,8 @@ export const useStore = create<StudySyncStore>()(
 
       // Focus mode actions
       startFocusSession: (taskId, courseId) => {
-        const id = generateId()
-        const now = new Date().toISOString()
+        const id = generateId();
+        const now = new Date().toISOString();
         const session: FocusSession = {
           id,
           startTime: now,
@@ -301,44 +311,48 @@ export const useStore = create<StudySyncStore>()(
           pomodorosCompleted: 0,
           totalFocusTime: 0,
           sessionType: "pomodoro",
-        }
+        };
 
         set((state) => ({
           focusSessions: [...state.focusSessions, session],
           currentFocusSession: session,
           isFocusModeActive: true,
-        }))
+        }));
 
-        return id
+        return id;
       },
 
       endFocusSession: () => {
-        const { currentFocusSession } = get()
-        if (!currentFocusSession) return
+        const { currentFocusSession } = get();
+        if (!currentFocusSession) return;
 
-        const now = new Date().toISOString()
+        const now = new Date().toISOString();
 
         set((state) => ({
-          focusSessions: state.focusSessions.map((s) => (s.id === currentFocusSession.id ? { ...s, endTime: now } : s)),
+          focusSessions: state.focusSessions.map((s) =>
+            s.id === currentFocusSession.id ? { ...s, endTime: now } : s
+          ),
           currentFocusSession: undefined,
           isFocusModeActive: false,
-        }))
+        }));
       },
 
       updateFocusSession: (session) => {
-        const { currentFocusSession } = get()
-        if (!currentFocusSession) return
+        const { currentFocusSession } = get();
+        if (!currentFocusSession) return;
 
         set((state) => ({
-          focusSessions: state.focusSessions.map((s) => (s.id === currentFocusSession.id ? { ...s, ...session } : s)),
+          focusSessions: state.focusSessions.map((s) =>
+            s.id === currentFocusSession.id ? { ...s, ...session } : s
+          ),
           currentFocusSession: { ...currentFocusSession, ...session },
-        }))
+        }));
       },
 
       // AI actions
       startConversation: (title, courseId) => {
-        const id = generateId()
-        const now = new Date().toISOString()
+        const id = generateId();
+        const now = new Date().toISOString();
 
         set((state) => ({
           aiConversations: [
@@ -353,38 +367,44 @@ export const useStore = create<StudySyncStore>()(
             },
           ],
           currentConversation: id,
-        }))
+        }));
 
-        return id
+        return id;
       },
 
       addMessage: (content, role) => {
-        const { currentConversation } = get()
-        if (!currentConversation) return
+        const { currentConversation } = get();
+        if (!currentConversation) return;
 
-        const id = generateId()
-        const now = new Date().toISOString()
+        const id = generateId();
+        const now = new Date().toISOString();
 
         set((state) => ({
           aiConversations: state.aiConversations.map((c) =>
             c.id === currentConversation
               ? {
                   ...c,
-                  messages: [...c.messages, { id, role, content, timestamp: now }],
+                  messages: [
+                    ...c.messages,
+                    { id, role, content, timestamp: now },
+                  ],
                   updatedAt: now,
                 }
-              : c,
+              : c
           ),
-        }))
+        }));
 
-        return id
+        return id;
       },
 
       deleteConversation: (id) => {
         set((state) => ({
           aiConversations: state.aiConversations.filter((c) => c.id !== id),
-          currentConversation: state.currentConversation === id ? undefined : state.currentConversation,
-        }))
+          currentConversation:
+            state.currentConversation === id
+              ? undefined
+              : state.currentConversation,
+        }));
       },
 
       clearConversationMessages: (id) => {
@@ -396,17 +416,17 @@ export const useStore = create<StudySyncStore>()(
                   messages: [],
                   updatedAt: new Date().toISOString(),
                 }
-              : c,
+              : c
           ),
-        }))
+        }));
       },
 
       setCurrentConversation: (id) => set({ currentConversation: id }),
     }),
     {
       name: "studysync-storage",
-    },
-  ),
+    }
+  )
 );
 // for local development
 // Uncomment the line below to clear the local storage

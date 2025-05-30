@@ -246,6 +246,7 @@ export const mockFocusSessions: FocusSession[] = [
     courseId: "course-1",
     pomodorosCompleted: 3,
     totalFocusTime: 4500, // 75 minutes in seconds
+    sessionType: "pomodoro",
   },
   {
     id: "session-2",
@@ -255,6 +256,7 @@ export const mockFocusSessions: FocusSession[] = [
     courseId: "course-2",
     pomodorosCompleted: 2,
     totalFocusTime: 3000, // 50 minutes in seconds
+    sessionType:'pomodoro'
   },
 ]
 

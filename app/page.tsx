@@ -1,4 +1,4 @@
-import { Dashboard } from "@/components/dashboard/dashboard";
+
 import Contribute from "@/components/landingpage/Contribute";
 import Features from "@/components/landingpage/Features";
 import Footer from "@/components/landingpage/Footer";
