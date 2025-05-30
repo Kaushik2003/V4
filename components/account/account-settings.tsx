@@ -10,17 +10,27 @@ import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
-export function AccountSettings() {
+export function AccountSettings({data}:{data: any}) {
   const [activeTab, setActiveTab] = useState("profile")
 
   // Mock user data
   const user = {
-    name: "Alex Johnson",
-    email: "alex@example.com",
-    avatar: "/placeholder.svg?height=100&width=100",
-    joinDate: "January 2023",
+    name: data?.user?.user_metadata?.full_name,
+    email: data?.user?.email, 
+    avatar: data?.user?.user_metadata?.avatar_url || "/placeholder.svg",
+    joinDate: data?.user?.created_at ? new Date(data.user.created_at).toLocaleDateString() : "N/A",
+    bio: data?.user?.user_metadata?.bio || "",
   }
+  const router = useRouter();
+  
+    const logout = async () => {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+      router.push("/");
+    };
 
   return (
     <div className="h-full">
@@ -58,18 +68,19 @@ export function AccountSettings() {
                 <Bell className="mr-2 h-4 w-4" />
                 Notifications
               </Button>
-              <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveTab("security")}>
+              {/* <Button variant="ghost" className="w-full justify-start" onClick={() => setActiveTab("security")}>
                 <Shield className="mr-2 h-4 w-4" />
                 Security
-              </Button>
+              </Button> */}
             </div>
 
             <Separator className="my-4" />
 
-            <Button variant="outline" className="w-full">
+            <Button onClick={logout} variant="outline" className="w-full">
               <LogOut className="mr-2 h-4 w-4" />
               Sign Out
             </Button>
+            
           </div>
         </motion.div>
 
@@ -80,7 +91,7 @@ export function AccountSettings() {
               <TabsList className="mb-6">
                 <TabsTrigger value="profile">Profile</TabsTrigger>
                 <TabsTrigger value="notifications">Notifications</TabsTrigger>
-                <TabsTrigger value="security">Security</TabsTrigger>
+                {/* <TabsTrigger value="security">Security</TabsTrigger> */}
               </TabsList>
 
               <TabsContent value="profile" className="space-y-6">
@@ -154,7 +165,7 @@ export function AccountSettings() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="security" className="space-y-6">
+              {/* <TabsContent value="security" className="space-y-6">
                 <h2 className="text-xl font-semibold">Security Settings</h2>
                 <div className="space-y-6">
                   <div className="space-y-4">
@@ -201,7 +212,7 @@ export function AccountSettings() {
                     </Button>
                   </div>
                 </div>
-              </TabsContent>
+              </TabsContent> */}
             </Tabs>
           </div>
         </motion.div>
