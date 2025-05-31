@@ -14,6 +14,16 @@ export type Course = {
   exams: Exam[];
 };
 
+export type User={
+  id: string;
+  email: string;
+  name?: string;
+  avatar?: string;
+  createdAt: string;
+  bio: string;
+  password?: string; // Optional for OAuth users
+}
+
 export type Task = {
   id: string;
   title: string;
@@ -97,6 +107,7 @@ type StudySyncStore = {
   notes: Note[];
   focusSessions: FocusSession[];
   aiConversations: AIConversation[];
+  user:User[];
 
   // Current state
   currentCourse?: string;
@@ -169,6 +180,7 @@ export const useStore = create<StudySyncStore>()(
       notes: [],
       focusSessions: [],
       aiConversations: [],
+      user:[],
 
       // Current state
       currentCourse: undefined,

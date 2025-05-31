@@ -1,4 +1,4 @@
-import type { Course, Task, Note, Resource, Exam, FocusSession, AIConversation } from "./store"
+import type { Course, Task, Note, Resource, Exam, FocusSession, AIConversation, User } from "./store"
 
 // Generate a unique ID
 const generateId = () => Math.random().toString(36).substring(2, 11)
@@ -50,6 +50,47 @@ export const mockCourses: Course[] = [
     exams: [],
   },
 ]
+
+//Mock Users
+export const mockUsers: User[] = [
+  {
+    id: "1a2b3c4d",
+    email: "jane.doe@example.com",
+    name: "Jane Doe",
+    avatar: "https://example.com/avatars/jane.jpg",
+    createdAt: "2023-06-15T12:34:56Z",
+    password: "hashed_password_123", // Example hashed password
+    bio: "Full-stack developer and coffee enthusiast.",
+  },
+  {
+    id: "5e6f7g8h",
+    email: "john.smith@example.com",
+    name: "John Smith",
+    avatar: "/placeholder.svg",
+    createdAt: "2024-01-10T09:20:30Z",
+    bio: "",
+    password: "hashed_password_456", // Example hashed password
+  },
+  {
+    id: "9i0j1k2l",
+    email: "emily.ray@example.com",
+    name: "Emily Ray",
+    avatar: "https://example.com/avatars/emily.png",
+    createdAt: "2022-11-25T17:45:00Z",
+    bio: "Design lover. Currently exploring UI/UX.",
+    password: "hashed_password_789", // Example hashed password
+  },
+  {
+    id: "3m4n5o6p",
+    email: "michael.lee@example.com",
+    name: "Michael Lee",
+    avatar: "/placeholder.png",
+    createdAt: "2023-03-05T08:00:00Z",
+    bio: "Passionate about open-source and building communities.",
+    password: "hashed_password_101", // Example hashed password
+  },
+];
+
 
 // Mock tasks
 export const mockTasks: Task[] = [
