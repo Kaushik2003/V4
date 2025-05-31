@@ -1,11 +1,11 @@
 import { LayoutDashboard } from "lucide-react";
-import { login, signup } from "../actions";
+import { signup } from "../actions";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LoginWithGoogle } from "@/components/login-form";
-import Link from "next/link";
+import { cn } from "@/lib/utils";
+// import Form from "next/form";
+
 export default function LoginPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
@@ -20,12 +20,14 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            {/* Login Page */}
+            {/* SignUp Page */}
             <div className={cn("flex flex-col gap-6")}>
               <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Login to your account</h1>
+                <h1 className="text-2xl font-bold">
+                  SignUp your account for V4
+                </h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  Enter your email below to login to your account
+                  Enter your email below to Signup
                 </p>
               </div>
 
@@ -39,12 +41,6 @@ export default function LoginPage() {
                     <div className="grid gap-3">
                       <div className="flex items-center">
                         <Label htmlFor="password">Password</Label>
-                        {/* <a
-                          href="#"
-                          className="ml-auto text-sm underline-offset-4 hover:underline"
-                        >
-                          Forgot your password?
-                        </a> */}
                       </div>
                       <Input
                         id="password"
@@ -54,38 +50,17 @@ export default function LoginPage() {
                       />
                     </div>
 
-                    <Button formAction={login} className="w-full">
-                      Login
+                    <Button
+                      formAction={signup}
+                      type="submit"
+                      className="w-full"
+                    >
+                      Signup
                     </Button>
-                    {/* <Button formAction={signup} className="w-full">
-                      Sign Up
-                    </Button> */}
                   </div>
                 </form>
-
-                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-                  <span className="bg-background text-muted-foreground relative z-10 px-2">
-                    Or continue with
-                  </span>
-                </div>
-
-                {/* Google login with its own form */}
-                <LoginWithGoogle className="w-full" />
-              </div>
-
-              {/* Redirecting to Sign up Page */}
-
-              <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <Link
-                  href="/auth/signup"
-                  className="underline underline-offset-4"
-                >
-                  Sign up
-                </Link>
               </div>
             </div>
-            {/* End of Login Page */}
           </div>
         </div>
       </div>

@@ -442,4 +442,4 @@ export const useStore = create<StudySyncStore>()(
 );
 // for local development
 // Uncomment the line below to clear the local storage
-useStore.persist.clearStorage();
+// useStore.persist.clearStorage();
